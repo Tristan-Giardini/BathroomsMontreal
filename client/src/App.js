@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
+import Header from "./Header";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import GlobalStyles from "./GlobalStyles";
+import Homepage from "./Homepage";
 
-function App() {
+const App = () => {
   const [message, setMessage] = useState(false);
   useEffect(() => {
     fetch("/message").then((res) =>
@@ -14,11 +18,18 @@ function App() {
   console.log(message);
 
   return (
-    <div className="App">
-      <h1>Hello World</h1>
-      <h1>{message}</h1>
-    </div>
+    <BrowserRouter>
+      <GlobalStyles />
+      <Header />
+      <div className="App">
+        <h1>Hello World</h1>
+        <h1>{message}</h1>
+      </div>
+      <Routes>
+        <Route path="/" element={<Homepage />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
