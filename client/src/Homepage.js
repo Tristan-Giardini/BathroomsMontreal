@@ -1,9 +1,16 @@
 import MapContainer from "./MapContainer";
+import styled from "styled-components";
 const Homepage = () => {
-  return ( <div>
+  return ( <StyledHome>
     homepage lol
     <MapContainer/>
-  </div> );
+  </StyledHome> );
 }
+
+const StyledHome = styled.div`
+margin: 20px auto;
+width: 800px;
+height: 500px;
+`
 
 export default Homepage;
