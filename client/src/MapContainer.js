@@ -1,7 +1,13 @@
-import ReactMapBox from "react-map-gl";
+import ReactMapBox, { Marker } from "react-map-gl";
 import styled from "styled-components";
+import gendered from './assets/gendered.png';
+import toilet from './assets/toilet.png';
+const washrooms = require('./assets/info');
 
 const MapContainer = () => {
+  console.log(washrooms.washrooms);
+
+  if (!washrooms.washrooms){return <h1>Loading</h1>}
   return (
     <StyledBox>
       <ReactMapBox
@@ -12,15 +18,30 @@ const MapContainer = () => {
           zoom: 14,
         }}
         mapStyle="mapbox://styles/mapbox/streets-v9"
-      ></ReactMapBox>
+      >
+        {washrooms.washrooms.map((each) => {
+          return (
+            <Marker latitude={each.lat} longitude={each.lng} key={each.lat}>
+              <div>
+                {console.log(each)}
+                <h4>{each.name}</h4>
+                <StyledIcon src={toilet} />
+              </div>
+            </Marker>
+          );
+        })}
+      </ReactMapBox>
     </StyledBox>
   );
 };
 
 const StyledBox = styled.div`
-width: 200px;
-height: 200px;
-background-color: aliceblue;
+  width: 800px;
+  height: 500px;
+`;
+
+const StyledIcon = styled.img`
+width: 35px;
 `
 
 export default MapContainer;
