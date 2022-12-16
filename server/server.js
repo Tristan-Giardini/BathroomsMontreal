@@ -1,8 +1,16 @@
 const express = require("express");
 const app = express();
+const morgan = require("morgan");
+const helmet = require("helmet");
 
-app.get("/message", function (req, res) {
-  res.status(200).json({ message: "hello world" });
-});
+const { getBathrooms, addBathroom, deleteBathrooms } = require("./handlers");
 
-app.listen(8000);
+app.use(express.json());
+app.use(helmet());
+app.use(morgan("tiny"));
+
+app.get("/bathrooms", getBathrooms);
+app.post("/add-bathroom", addBathroom);
+app.delete("/delete-bathrooms", deleteBathrooms);
+
+app.listen(8000, () => console.log("Listening on port 8000"));
