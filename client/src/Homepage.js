@@ -1,12 +1,21 @@
 import MapContainer from "./MapContainer";
 import styled from "styled-components";
 import Form from "./Form";
+import { useState } from "react";
 const Homepage = () => {
+
+    const [formData, setFormData] = useState({});
+
+    const handleChange = (e) => {
+      setFormData({
+        ...formData,
+        [e.target.name]: e.target.value,
+      });
+    };
   return (
     <StyledHome>
-      homepage lol
-      <MapContainer />
-      <Form />
+      <MapContainer handleChange={handleChange} setFormData={setFormData} formData={formData}/>
+      <Form handleChange={handleChange} formData={formData} />
     </StyledHome>
   );
 };
