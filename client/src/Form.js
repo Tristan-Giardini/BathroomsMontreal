@@ -11,8 +11,8 @@ const Form = ({ handleChange, formData }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
-      isGenderClicked &&
-      isAccessibleClicked &&
+      // isGenderClicked &&
+      // isAccessibleClicked &&
       formData.name &&
       formData.lng &&
       formData.lat
@@ -39,12 +39,12 @@ const Form = ({ handleChange, formData }) => {
     if (
       !formData.name ||
       !formData.lng ||
-      !formData.lat ||
-      !isGenderClicked ||
-      !isAccessibleClicked
+      !formData.lat
+      // !isGenderClicked ||
+      // !isAccessibleClicked
     ) {
       window.alert(
-        "Oops! Make sure you selected a point on the map and filled out every entry of the form."
+        "Oops! Make sure you at least select a point on the map and give the bathroom a name."
       );
     }
   };
@@ -59,12 +59,12 @@ const Form = ({ handleChange, formData }) => {
             business or something easy to identify
           </p>
           <div>
-            <span>name</span>
+            <span>Name of bathroom</span>
             <input type="text" name="name" onChange={handleChange} />
           </div>
           <Bathroom>
             <div>
-              <label>is this bathroom accessible?</label>
+              <label>Is this bathroom accessible?</label>
             </div>
             <Inputs>
               <input
@@ -87,7 +87,7 @@ const Form = ({ handleChange, formData }) => {
           </Bathroom>
           <Gender>
             <div>
-              <label>are they gendered?</label>
+              <label>Is this bathroom gendered?</label>
             </div>
             <Inputs>
               <input
