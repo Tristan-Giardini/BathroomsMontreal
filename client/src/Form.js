@@ -2,9 +2,9 @@ import styled from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Form = () => {
+const Form = ({ handleChange, formData }) => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({});
+
   const [isAccessibleClicked, setIsAccessibleClicked] = useState(false);
   const [isGenderClicked, setIsGenderClicked] = useState(false);
 
@@ -26,18 +26,12 @@ const Form = () => {
       });
   };
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
 
   const handleSubmitClick = () => {
     if (
       !formData.name ||
-      !formData.longitude ||
-      !formData.latitude ||
+      !formData.lng ||
+      !formData.lat ||
       !isGenderClicked ||
       !isAccessibleClicked
     ) {
@@ -51,21 +45,18 @@ const Form = () => {
     <>
       <FormDiv>
         <form onSubmit={handleSubmit}>
+          <h2>Add bathroom</h2>
+          <p>
+            Click on the map, and fill out the form. Please put the name of the
+            business or something easy to identify
+          </p>
           <div>
             <span>name</span>
             <input type="text" name="name" onChange={handleChange} />
           </div>
-          <div>
-            <label>longitude</label>
-            <input type="text" name="longitude" onChange={handleChange} />
-          </div>
-          <div>
-            <label>latitude</label>
-            <input type="text" name="latitude" onChange={handleChange} />
-          </div>
           <Bathroom>
             <div>
-              <label>is bathroom accessible?</label>
+              <label>is this bathroom accessible?</label>
             </div>
             <Inputs>
               <input
@@ -130,7 +121,12 @@ const FormDiv = styled.div`
   div {
     display: flex;
     justify-content: space-between;
-    padding: 1%;
+    padding: 1% 0;
+  }
+  p{
+    border-bottom: 1px solid black;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
   }
 `;
 
