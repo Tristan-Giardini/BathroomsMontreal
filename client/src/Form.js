@@ -10,22 +10,30 @@ const Form = ({ handleChange, formData }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("/add-bathroom", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        window.alert("Bathroom added!");
+    if (
+      isGenderClicked &&
+      isAccessibleClicked &&
+      formData.name &&
+      formData.lng &&
+      formData.lat
+    ) {
+      fetch("/add-bathroom", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       })
-      .catch((error) => {
-        console.error("Error", error);
-      });
+        .then((res) => res.json())
+        .then((data) => {
+          window.alert("Bathroom added!");
+          window.location.reload(true);
+        })
+        .catch((error) => {
+          console.error("Error", error);
+        });
+    }
   };
-
 
   const handleSubmitClick = () => {
     if (
@@ -36,7 +44,7 @@ const Form = ({ handleChange, formData }) => {
       !isAccessibleClicked
     ) {
       window.alert(
-        "please fill out every entry of the form before submitting!"
+        "Oops! Make sure you selected a point on the map and filled out every entry of the form."
       );
     }
   };
@@ -100,7 +108,7 @@ const Form = ({ handleChange, formData }) => {
               <label>no</label>
             </Inputs>
           </Gender>
-          <button onClick={handleSubmitClick}>Submit</button>
+          <Submit onClick={handleSubmitClick}>Submit</Submit>
         </form>
       </FormDiv>
     </>
@@ -123,10 +131,16 @@ const FormDiv = styled.div`
     justify-content: space-between;
     padding: 1% 0;
   }
-  p{
+  p {
     border-bottom: 1px solid black;
     margin-bottom: 5px;
     padding-bottom: 5px;
+  }
+`;
+
+const Submit = styled.button`
+  &:hover {
+    cursor: pointer;
   }
 `;
 

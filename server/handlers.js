@@ -28,12 +28,12 @@ const getBathrooms = async (req, res) => {
 const addBathroom = async (req, res) => {
   try {
     await client.connect();
-    const { name, longitude, latitude, accessible, gendered } = req.body;
+    const { name, lng, lat, accessible, gendered } = req.body;
     const BathroomData = {
       _id: uuidv4(),
       name: name,
-      longitude: longitude,
-      latitude: latitude,
+      lng: lng,
+      lat: lat,
       accessible: accessible,
       gendered: gendered,
     };
