@@ -24,6 +24,9 @@ const StyledHome = styled.div`
   margin: 20px auto;
   width: 800px;
   height: 500px;
+  @media (max-width: 798px) {
+    width: 100%;
+  }
 `;
 
 export default Homepage;

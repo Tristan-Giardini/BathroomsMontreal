@@ -11,8 +11,6 @@ const Form = ({ handleChange, formData }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
-      // isGenderClicked &&
-      // isAccessibleClicked &&
       formData.name &&
       formData.lng &&
       formData.lat
@@ -40,8 +38,6 @@ const Form = ({ handleChange, formData }) => {
       !formData.name ||
       !formData.lng ||
       !formData.lat
-      // !isGenderClicked ||
-      // !isAccessibleClicked
     ) {
       window.alert(
         "Oops! Make sure you at least select a point on the map and give the bathroom a name."
@@ -108,6 +104,10 @@ const Form = ({ handleChange, formData }) => {
               <label>no</label>
             </Inputs>
           </Gender>
+          <div>
+            <span>Details (key, code, etc)</span>
+            <input type="text" name="details" onChange={handleChange} />
+          </div>
           <Submit onClick={handleSubmitClick}>Submit</Submit>
         </form>
       </FormDiv>
@@ -125,6 +125,10 @@ const FormDiv = styled.div`
     flex-direction: column;
     width: 65%;
     margin: 3%;
+    @media (max-width: 1000px) {
+      width: 100%;
+      margin: 1%;
+    }
   }
   div {
     display: flex;
