@@ -28,7 +28,7 @@ const getBathrooms = async (req, res) => {
 const addBathroom = async (req, res) => {
   try {
     await client.connect();
-    const { name, lng, lat, accessible, gendered } = req.body;
+    const { name, lng, lat, accessible, gendered, details } = req.body;
     const BathroomData = {
       _id: uuidv4(),
       name: name,
@@ -36,6 +36,7 @@ const addBathroom = async (req, res) => {
       lat: lat,
       accessible: accessible,
       gendered: gendered,
+      details:details,
     };
 
     const db = client.db("MontrealBathrooms");
