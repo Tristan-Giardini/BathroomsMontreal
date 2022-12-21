@@ -36,7 +36,7 @@ const addBathroom = async (req, res) => {
       lat: lat,
       accessible: accessible,
       gendered: gendered,
-      details:details,
+      details: details,
     };
 
     const db = client.db("MontrealBathrooms");
@@ -53,7 +53,7 @@ const addBathroom = async (req, res) => {
   client.close();
 };
 
-const deleteBathrooms = async (req, res) => {
+const deleteAllBathrooms = async (req, res) => {
   try {
     await client.connect();
     const db = client.db("MontrealBathrooms");
@@ -69,8 +69,48 @@ const deleteBathrooms = async (req, res) => {
   }
 };
 
+const updateBathroom = async (req, res) => {
+  try {
+    await client.connect();
+    const db = client.db("MontrealBathrooms");
+    const { _id, name, accessible, gendered, details } = req.body;
+    result = await db.collection("bathrooms").updateOne(
+      { _id: _id },
+      {
+        $set: {
+          name: name,
+          accessible: accessible,
+          gendered: gendered,
+          details: details,
+        },
+      }
+    );
+    res.status(200).json({ status: 200, data: result });
+  } catch (err) {
+    console.log(err.stack);
+    res.status(400).json({ status: 400, message: "Could not update bathroom" });
+  }
+};
+
+const deleteBathroom = async (req, res) => {
+  try {
+    await client.connect();
+    const db = client.db("MontrealBathrooms");
+    const _id = req.params._id;
+    console.log(_id);
+    const result = await db.collection("bathrooms").deleteOne({ _id: _id });
+
+    res.status(200).json({ status: 200, data: result });
+  } catch (err) {
+    console.log(err.stack);
+    res.status(400).json({ status: 400, message: "Could not delete bathroom" });
+  }
+};
+
 module.exports = {
   getBathrooms,
   addBathroom,
-  deleteBathrooms,
+  updateBathroom,
+  deleteBathroom,
+  deleteAllBathrooms,
 };

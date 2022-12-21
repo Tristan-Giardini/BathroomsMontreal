@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Form = ({ handleChange, formData }) => {
+const Form = ({ handleChange, setFormData, formData }) => {
   const navigate = useNavigate();
 
   const [isAccessibleClicked, setIsAccessibleClicked] = useState(false);
@@ -10,11 +10,15 @@ const Form = ({ handleChange, formData }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (
-      formData.name &&
-      formData.lng &&
-      formData.lat
-    ) {
+    if (formData.accessible) {
+      let newValue = Boolean(formData.accessible);
+      setFormData({ ...formData, accessible: newValue });
+    }
+    if (formData.gendered) {
+      let newValue = Boolean(formData.gendered);
+      setFormData({ ...formData, gendered: newValue });
+    }
+    if (formData.name && formData.lng && formData.lat) {
       fetch("/add-bathroom", {
         method: "POST",
         headers: {
@@ -34,16 +38,14 @@ const Form = ({ handleChange, formData }) => {
   };
 
   const handleSubmitClick = () => {
-    if (
-      !formData.name ||
-      !formData.lng ||
-      !formData.lat
-    ) {
+    if (!formData.name || !formData.lng || !formData.lat) {
       window.alert(
         "Oops! Make sure you at least select a point on the map and give the bathroom a name."
       );
     }
   };
+
+  console.log(formData);
 
   return (
     <>
