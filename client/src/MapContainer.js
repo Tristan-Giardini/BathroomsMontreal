@@ -1,10 +1,19 @@
-import ReactMapBox, { Marker, GeolocateControl } from "react-map-gl";
+import ReactMapBox, { Marker, GeolocateControl, Popup } from "react-map-gl";
 import styled from "styled-components";
 import gendered from "./assets/gendered.png";
 import toilet from "./assets/toilet.png";
+import { useState } from "react";
+import PopupComponent from "./PopupComponent";
 const washrooms = require("./assets/info");
 
+
 const MapContainer = ({ handleChange, setFormData, formData }) => {
+  const [selectedBathroom, setSelectedBathroom] = useState(null);
+const bathClick = (e, name, lng, lat) =>{
+  e.preventDefault();
+  setSelectedBathroom({name: name, lng: lng, lat: lat});
+  console.log(selectedBathroom);
+}
   const mapClick = (e) => {
     setFormData({
       ...formData,
@@ -42,7 +51,11 @@ const MapContainer = ({ handleChange, setFormData, formData }) => {
             <Marker latitude={each.lat} longitude={each.lng} key={each.lat}>
               <div>
                 <h4>
-                  <button >{each.name}</button>
+                  <button
+                    onClick={(e) => bathClick(e, each.name, each.lng, each.lat)}
+                  >
+                    {each.name}
+                  </button>
                 </h4>
                 <StyledIcon src={toilet} />
               </div>
@@ -52,6 +65,11 @@ const MapContainer = ({ handleChange, setFormData, formData }) => {
         {formData.lat && (
           <Marker latitude={formData.lat} longitude={formData.lng}></Marker>
         )}
+        {selectedBathroom &&
+        <PopupComponent
+          latitude={selectedBathroom.lat}
+          longitude={selectedBathroom.lng} />
+        }
       </ReactMapBox>
     </StyledBox>
   );
