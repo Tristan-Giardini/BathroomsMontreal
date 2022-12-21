@@ -43,9 +43,9 @@ const MapContainer = ({ handleChange, setFormData, formData }) => {
       <ReactMapBox
         mapboxAccessToken="pk.eyJ1IjoiYWxsdGhlcmlnaHRoeXBlIiwiYSI6ImNsYm55cXMyeTBhYnYzcG1xazVsanpiZGUifQ.1qBx_PT7xzE-ryPmmsSTlA"
         initialViewState={{
-          longitude: -73.599382,
-          latitude: 45.52886,
-          zoom: 11,
+          longitude: -73.585016,
+          latitude: 45.516378,
+          zoom: 12,
         }}
         mapStyle="mapbox://styles/mapbox/streets-v9"
         onClick={(e) => mapClick(e)}
