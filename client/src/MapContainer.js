@@ -74,7 +74,7 @@ const MapContainer = ({ handleChange, setFormData, formData }) => {
                     {each.name}
                   </button>
                 </h4>
-                {each.gendered === "true" ? (
+                {each.gendered === true ? (
                   <StyledIcon
                     src={gendered}
                     alt="This is a gendered bathroom"
@@ -106,7 +106,7 @@ const StyledMarker = styled.div`
 const StyledBox = styled.div`
   width: 800px;
   height: 500px;
-  @media (max-width: 1000px){
+  @media (max-width: 1000px) {
     width: 100%;
   }
 `;

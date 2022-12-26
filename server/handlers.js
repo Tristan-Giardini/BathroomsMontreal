@@ -34,8 +34,8 @@ const addBathroom = async (req, res) => {
       name: name,
       lng: lng,
       lat: lat,
-      accessible: accessible,
-      gendered: gendered,
+      accessible: Boolean(accessible),
+      gendered: Boolean(gendered),
       details: details,
     };
 
