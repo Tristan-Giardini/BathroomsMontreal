@@ -10,14 +10,6 @@ const Form = ({ handleChange, setFormData, formData }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.accessible) {
-      let newValue = Boolean(formData.accessible);
-      setFormData({ ...formData, accessible: newValue });
-    }
-    if (formData.gendered) {
-      let newValue = Boolean(formData.gendered);
-      setFormData({ ...formData, gendered: newValue });
-    }
     if (formData.name && formData.lng && formData.lat) {
       fetch("/add-bathroom", {
         method: "POST",
