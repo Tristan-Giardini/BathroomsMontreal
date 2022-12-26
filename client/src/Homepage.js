@@ -2,7 +2,11 @@ import MapContainer from "./MapContainer";
 import styled from "styled-components";
 import Form from "./Form";
 import { useState } from "react";
+import ContactUs from "./ContactUs";
+import { useNavigate } from "react-router-dom";
+
 const Homepage = () => {
+  const navigate = useNavigate;
   const [formData, setFormData] = useState({});
 
   const handleChange = (e) => {
