@@ -110,7 +110,15 @@ const Form = ({ handleChange, setFormData, formData }) => {
             <span>Details (key, code, etc)</span>
             <input type="text" name="details" onChange={handleChange} />
           </div>
+          <div></div>
           <Submit onClick={handleSubmitClick}>Submit</Submit>
+          <div></div>
+          <p></p>
+          <h2>Contact us</h2>
+          <p>
+            For more information about this project and to notify us of a change
+            in detail click <a href="/contact">here</a>
+          </p>
         </form>
       </FormDiv>
     </>
