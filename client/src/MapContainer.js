@@ -34,7 +34,6 @@ const MapContainer = ({ handleChange, setFormData, formData }) => {
     });
     setSelectedBathroom(null);
   };
-
   if (!bathArr.length) {
     return <h1>Loading</h1>;
   }
@@ -51,7 +50,7 @@ const MapContainer = ({ handleChange, setFormData, formData }) => {
         onClick={(e) => mapClick(e)}
         onContextMenu={rightClick}
       >
-        <GeolocateControl />
+        <GeolocateControl showAccuracyCircle={false} />
         {bathArr.map((each) => {
           return (
             <Marker latitude={each.lat} longitude={each.lng} key={each.lat}>
