@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const helmet = require("helmet");
+// Xarah addition
+const cors = require("cors");
 
 const {
   getBathrooms,
@@ -11,9 +13,30 @@ const {
   deleteBathroom,
 } = require("./handlers");
 
+// Xarah addition
+app.use(function (req, res, next) {
+  res.header(
+    "Access-Control-Allow-Methods",
+    "OPTIONS, HEAD, GET, PUT, POST, DELETE"
+  );
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("tiny"));
+// Xarah addition
+app.use(express.urlencoded({ extended: false }));
+app.use("/", express.static(__dirname + "/"));
+app.use(
+  cors({
+    origin: ["https://bathroomsmtl-api.onrender.com"],
+  })
+);
+app.use(express.static("./server/assets"));
 
 app.get("/bathrooms", getBathrooms);
 app.post("/add-bathroom", addBathroom);
