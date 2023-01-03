@@ -5,5 +5,5 @@ Bathrooms Montreal is a collaboration between Oliver Mercer-Smail and Tristan Gi
 <p>Bathrooms montreal is a user based platform where you can geolocate yourself and find a nearby bathroom to use. Users can also input a public bathroom to the map, or contact us about any concerns.</p>
 <img src="./client/src/assets/bathrooms2.png" />
 <p>Accessibility is important to us, and we want to use tech to make the world more accessible.</p>
-<p>This project uses Mapbox API, and emailJS.</p>
+<p>This project uses Mapbox API, ReactJS, MongoDB, NodeJS, Express, and emailJS.</p>
 <p>Feel free to get in touch: olivermercersmail@gmail.com or tristangiardini@gmail.com</p>
