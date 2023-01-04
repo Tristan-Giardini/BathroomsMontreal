@@ -12,7 +12,7 @@ const MapContainer = ({ handleChange, setFormData, formData }) => {
   const [bathArr, setBathArr] = useState([]);
 
   useEffect(() => {
-    fetch(`/bathrooms`)
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/bathrooms`)
       .then((res) => res.json())
       .then((data) => {
         setBathArr(data.data);
