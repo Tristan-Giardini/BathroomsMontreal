@@ -1,9 +1,12 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { MobileContext } from "./MobileContext";
+import { useContext } from "react";
 
 const Form = ({ handleChange, setFormData, formData }) => {
   const navigate = useNavigate();
+  const { isMobile } = useContext(MobileContext);
 
   const [isAccessibleClicked, setIsAccessibleClicked] = useState(false);
   const [isGenderClicked, setIsGenderClicked] = useState(false);
@@ -141,6 +144,10 @@ const FormDiv = styled.div`
     border-bottom: 1px solid black;
     margin-bottom: 5px;
     padding-bottom: 5px;
+  }
+  @media (max-width: 390px) {
+    padding: 5%;
+    font-size: 50%;
   }
 `;
 
