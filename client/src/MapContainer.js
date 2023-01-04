@@ -4,7 +4,6 @@ import toilet from "./assets/toilet.png";
 import { useState, useEffect } from "react";
 import PopupComponent from "./PopupComponent";
 import gendered from "./assets/gendered.png";
-import CircularProgress from "@mui/material/CircularProgress";
 const washrooms = require("./assets/info");
 
 const MapContainer = ({ handleChange, setFormData, formData }) => {
@@ -39,7 +38,7 @@ const MapContainer = ({ handleChange, setFormData, formData }) => {
     return (
       <LoadingDiv>
         <div>
-          <CircularProgress color="inherit" />
+          <h1>Loading...</h1>
         </div>
         <div>This might take a minute...</div>
       </LoadingDiv>
