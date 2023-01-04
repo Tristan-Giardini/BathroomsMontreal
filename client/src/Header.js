@@ -2,9 +2,38 @@ import styled from "styled-components";
 import gendered from "./assets/gendered.png";
 import toilet from "./assets/toilet.png";
 import disabled from "./assets/disabled.png";
+import { MobileContext } from "./MobileContext";
+import { useContext } from "react";
 
 const Header = () => {
-  return (
+  const { isMobile } = useContext(MobileContext);
+  return isMobile ? (
+    <StyledHeader>
+      <div>
+        <div>Bathrooms mtl</div>
+      </div>
+      <Types>
+        <div>
+          <img src={gendered} alt="This icon indicates a gendered washroom" />
+          <span>Gendered washroom</span>
+        </div>
+        <div>
+          <img
+            src={toilet}
+            alt="This icon indicates a gender neutral washroom"
+          />
+          <span>Gender neutral washroom</span>
+        </div>
+        <div>
+          <img
+            src={disabled}
+            alt="This icon indicates a wheelchair accessible washroom"
+          />
+          <span>Accessible washroom</span>
+        </div>
+      </Types>
+    </StyledHeader>
+  ) : (
     <StyledHeader>
       <div>Bathrooms mtl</div>
       <img src={gendered} alt="This icon indicates a gendered washroom" />
@@ -31,6 +60,22 @@ const StyledHeader = styled.div`
   img {
     width: 35px;
     margin: 10px;
+  }
+  @media (max-width: 390px) {
+    width: 100%;
+    display: flex;
+    /* flex-direction: column; */
+    img {
+      width: 10px;
+    }
+  }
+`;
+const Types = styled.div`
+  div {
+    display: flex;
+    flex-direction: row;
+    font-size: 60%;
+    align-items: center;
   }
 `;
 

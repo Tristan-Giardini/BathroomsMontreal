@@ -4,6 +4,7 @@ import toilet from "./assets/toilet.png";
 import { useState, useEffect } from "react";
 import PopupComponent from "./PopupComponent";
 import gendered from "./assets/gendered.png";
+import CircularProgress from "@mui/material/CircularProgress";
 const washrooms = require("./assets/info");
 
 const MapContainer = ({ handleChange, setFormData, formData }) => {
@@ -11,7 +12,7 @@ const MapContainer = ({ handleChange, setFormData, formData }) => {
   const [bathArr, setBathArr] = useState([]);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/bathrooms`)
+    fetch(`/bathrooms`)
       .then((res) => res.json())
       .then((data) => {
         setBathArr(data.data);
@@ -35,7 +36,14 @@ const MapContainer = ({ handleChange, setFormData, formData }) => {
     setSelectedBathroom(null);
   };
   if (!bathArr.length) {
-    return <h1>Loading</h1>;
+    return (
+      <LoadingDiv>
+        <div>
+          <CircularProgress color="inherit" />
+        </div>
+        <div>This might take a minute...</div>
+      </LoadingDiv>
+    );
   }
   return (
     <StyledBox>
@@ -108,10 +116,17 @@ const StyledBox = styled.div`
   @media (max-width: 1000px) {
     width: 100%;
   }
+  @media (max-width: 390px) {
+  }
 `;
-
 const StyledIcon = styled.img`
   width: 35px;
+`;
+const LoadingDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `;
 
 export default MapContainer;

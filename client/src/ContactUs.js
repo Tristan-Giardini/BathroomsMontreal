@@ -53,8 +53,12 @@ const StyledHome = styled.div`
   margin: 20px auto;
   width: 800px;
   height: 500px;
-  @media (max-width: 798px) {
+  @media (max-width: 1000px) {
     width: 100%;
+  }
+  @media (max-width: 390px) {
+    padding: 5%;
+    font-size: 50%;
   }
 `;
 
