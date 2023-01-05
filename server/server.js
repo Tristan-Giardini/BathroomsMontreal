@@ -37,6 +37,7 @@ app.use(
   })
 );
 app.use(express.static("./server/assets"));
+//test
 
 app.get("/bathrooms", getBathrooms);
 app.post("/add-bathroom", addBathroom);
