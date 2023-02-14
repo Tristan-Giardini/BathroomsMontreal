@@ -53,7 +53,7 @@ const MapContainer = ({ handleChange, setFormData, formData }) => {
           latitude: 45.516378,
           zoom: 12,
         }}
-        mapStyle="mapbox://styles/mapbox/streets-v9"
+        mapStyle="mapbox://styles/mapbox/streets-v12"
         onClick={(e) => mapClick(e)}
         onContextMenu={rightClick}
       >
